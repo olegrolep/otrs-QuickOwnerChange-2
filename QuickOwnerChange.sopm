@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+    <Name>QuickOwnerChange</Name>
+    <Version>6.0.1</Version>
+    <Framework>6.0.x</Framework>
+    <Vendor>Oleg Russkin</Vendor>
+    <URL>https://github.com/olegrolep/otrs-QuickOwnerChange-2</URL>
+    <Description Lang="en">Change ticket owners easily.</Description>
+    <License>GNU AFFERO GENERAL PUBLIC LICENSE Version 3, November 2007</License>
+    <Filelist>
+        <File Permission="644" Location="Kernel/Config/Files/XML/QuickOwnerChange.xml" />
+        <File Permission="644" Location="Kernel/Config/Files/QuickOwnerChange.xml" />
+        <File Permission="644" Location="Kernel/Modules/AgentTicketQuickOwnerChange.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/TicketMenu/QuickOwnerChange.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/TicketOverviewMenu/QuickOwnerChangeBulk.pm" />
+        <File Permission="644" Location="Kernel/Output/HTML/Templates/Standard/QuickOwnerChangeSnippetBulk.tt" />
+        <File Permission="644" Location="doc/QuickOwnerChange.json" />
+        <File Permission="644" Location="doc/en/QuickOwnerChange.pod" />
+        <File Permission="644" Location="var/httpd/htdocs/js/Core.Agent.Overview.QuickOwnerChange.js" />
+        <File Permission="644" Location="var/httpd/htdocs/js/Core.Agent.TicketZoom.QuickOwnerChange.js" />
+    </Filelist>
+</otrs_package>

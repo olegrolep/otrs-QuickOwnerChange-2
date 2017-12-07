@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<otrs_config version="2.0" init="Config">
+  <Setting Name="Ticket::Frontend::PreMenuModule###510-QuickOwnerChange" Required="0" Valid="1">
+    <Description Lang="en">Module to show quick owner change dropdown in menu.</Description>
+    <Navigation>Frontend::Agent::View::TicketZoom::MenuModule</Navigation>
+    <Value>
+      <Hash>
+        <Item Key="Module">Kernel::Output::HTML::TicketMenu::QuickOwnerChange</Item>
+        <Item Key="Name" Translatable="1">QuickOwnerChange</Item>
+        <Item Key="Action">AgentTicketQuickOwnerChange</Item>
+        <Item Key="Description" Translatable="1">Change owner!</Item>
+      </Hash>
+    </Value>
+  </Setting>
+  <Setting Name="Frontend::Module###AgentTicketQuickOwnerChange" Required="0" Valid="1">
+    <Description Translatable="1">Frontend module registration for the bulk
+      QuickOwnerChange agent interface.
+    </Description>
+    <Navigation>Frontend::Agent::ModuleRegistration</Navigation>
+    <Value>
+            <Item ValueType="FrontendRegistration">
+                <Hash>
+                    <Item Key="Group">
+                        <Array>
+                        </Array>
+                    </Item>
+                    <Item Key="GroupRo">
+                        <Array>
+                        </Array>
+                    </Item>
+            <Item Key="Description" Translatable="1">Bulk quick owner change.</Item>
+            <Item Key="NavBarName"></Item>
+            <Item Key="Title" Translatable="1">Bulk Quick Owner Change</Item>
+          </Hash>
+            </Item>
+        </Value>
+  </Setting>
+    <Setting Name="Frontend::Navigation###AgentTicketQuickOwnerChange###003-QuickOwnerChange" Required="0" Valid="0">
+        <Description Translatable="1">Main menu item registration.</Description>
+        <Navigation>Frontend::Agent::ModuleRegistration::MainMenu</Navigation>
+        <Value>
+            <Array>
+                <DefaultItem ValueType="FrontendNavigation">
+                    <Hash>
+                    </Hash>
+                </DefaultItem>
+            </Array>
+        </Value>
+    </Setting>
+  <Setting Name="Ticket::Frontend::OverviewMenuModule###011-QuickOwnerChangeBulk" Required="0" Valid="1">
+    <Description Translatable="1">QuickOwnerChange bulk dropdown in ticket
+      overview screens.
+    </Description>
+    <Navigation>Frontend::Agent::TicketOverview::MenuModule</Navigation>
+    <Value>
+      <Hash>
+        <Item Key="Module">Kernel::Output::HTML::TicketOverviewMenu::QuickOwnerChangeBulk</Item>
+        <Item Key="Name" Translatable="1">QuickOwnerChangeBulk</Item>
+        <Item Key="Action">AgentTicketQuickOwnerChange</Item>
+        <Item Key="Description" Translatable="1">Change owner!</Item>
+        <Item Key="Templates">
+          <Hash>
+            <Item Key="Medium">1</Item>
+            <Item Key="Preview">1</Item>
+          </Hash>
+        </Item>
+      </Hash>
+    </Value>
+  </Setting>
+  <Setting Name="Ticket::Frontend::MenuModule###510-QuickOwnerChange" Required="0" Valid="1">
+    <Description Translatable="1">QuickOwnerChange dropdown in ticketzoom.</Description>
+    <Navigation>Frontend::Agent::View::TicketZoom::MenuModule</Navigation>
+    <Value>
+      <Hash>
+        <Item Key="Module">Kernel::Output::HTML::TicketMenu::QuickOwnerChange</Item>
+        <Item Key="Name" Translatable="1">QuickOwnerChange</Item>
+        <Item Key="Description" Translatable="1">Change owner</Item>
+        <Item Key="Action">AgentTicketQuickOwnerChange</Item>
+        <Item Key="PopupType"></Item>
+        <Item Key="ClusterName" Translatable="1"></Item>
+        <Item Key="ClusterPriority"></Item>
+      </Hash>
+    </Value>
+  </Setting>
+  <Setting Name="QuickOwnerChange::NoneLabel" Required="0" Valid="1">
+    <Description Translatable="1">Label for the NULL option in dropdown.</Description>
+    <Navigation>Core</Navigation>
+    <Value>
+      <Item ValueType="String" ValueRegex="">Quick Owner Change</Item>
+    </Value>
+  </Setting>
+  <Setting Name="QuickOwnerChange::Permissions" Required="0" Valid="1">
+    <Description Translatable="1">Minimum permissions for the agent on the queue
+      of the ticket to be listed as a possible owner.
+    </Description>
+    <Navigation>Core</Navigation>
+    <Value>
+      <Item ValueType="String" ValueRegex="">rw</Item>
+    </Value>
+  </Setting>
+  <Setting Name="QuickOwnerChange::SetLock" Required="0" Valid="1">
+    <Description Translatable="1">If enabled, the ticket will be locked after
+      change.
+    </Description>
+    <Navigation>Core</Navigation>
+    <Value>
+      <Item ValueType="Checkbox">0</Item>
+    </Value>
+  </Setting>
+  <Setting Name="QuickOwnerChange::SetResponsible" Required="0" Valid="1">
+    <Description Translatable="1">If enabled, the responsible is set to the
+      selected owner.
+    </Description>
+    <Navigation>Core</Navigation>
+    <Value>
+      <Item ValueType="Checkbox">0</Item>
+    </Value>
+  </Setting>
+  <Setting Name="QuickOwnerChange::OwnerGroup" Required="0" Valid="0">
+    <Description Translatable="1">If enabled, the possible owners have to be a
+      member of the defined group.
+    </Description>
+    <Navigation>Core</Navigation>
+    <Value>
+      <Item ValueType="String" ValueRegex="">Groupname</Item>
+    </Value>
+  </Setting>
+  <Setting Name="QuickOwnerChange::QueueGroups" Required="0" Valid="0">
+    <Description Translatable="1">If enabled, the possible owners are defined by
+      the queue the tickets is assigned to and the group.
+    </Description>
+    <Navigation>Core</Navigation>
+    <Value>
+      <Hash>
+        <Item Key="Queuename">Groupname</Item>
+      </Hash>
+    </Value>
+  </Setting>
+  <Setting Name="QuickOwnerChange::ViewPermission" Required="0" Valid="0">
+    <Description Translatable="1">If enabled, for the given queues only agents
+      of the given group(s) can view the dropdown. If you want all members of
+      the groups 'users' and 'admin' to see the dropdown in tickets that are in
+      the queue 'Raw', you have to write 'users,admin' as the value.
+    </Description>
+    <Navigation>Core</Navigation>
+    <Value>
+      <Hash>
+        <Item Key="Raw">users,admin</Item>
+      </Hash>
+    </Value>
+  </Setting>
+  <Setting Name="QuickOwnerChange::ViewPermissionByGroup" Required="0" Valid="0">
+    <Description Translatable="1">If enabled, only agents of the given groups
+      can see the dropdown.
+    </Description>
+    <Navigation>Core</Navigation>
+    <Value>
+      <Array>
+        <Item>admin</Item>
+      </Array>
+    </Value>
+  </Setting>
+</otrs_config>

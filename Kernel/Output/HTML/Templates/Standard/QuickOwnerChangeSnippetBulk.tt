@@ -1,0 +1,20 @@
+# --
+# QuickOwnerChangeSnippetBulk.tt - provides HTML for QuickOwnerChangeBulk.pm
+# Copyright (C) 2015 Perl-Services.de, http://www.perl-services.de
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<li class="Bulk AlwaysPresent [% Data.Class | html %]">
+  <form title="[% Translate("QuickOwnerChange bulk") | html %]"
+        action="[% Env("CGIHandle") | html %]" method="post"
+        name="quickownerchangebulk" id="quickownerchangebulk">
+    <input type="hidden" name="Action" value="AgentTicketQuickOwnerChange"/>
+    <label for="QuickOwnerChangeBulk"
+           class="InvisibleText">[% Translate("QuickOwnerChange bulk") | html %]
+      :</label>
+    [% Data.Select %]
+  </form>
+</li>

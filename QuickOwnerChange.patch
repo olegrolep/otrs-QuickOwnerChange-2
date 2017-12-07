@@ -1,0 +1,167 @@
+Index: Custom/Kernel/Modules/AgentTicketZoom.pm
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Custom/Kernel/Modules/AgentTicketZoom.pm	(date 1512640699000)
++++ Custom/Kernel/Modules/AgentTicketZoom.pm	(date 1512641674000)
+@@ -1287,6 +1287,24 @@
+                     Data => $ZoomMenuItems{$Item},
+                 );
+             }
++	        ##########
++	        #
++	        # Custom change
++	        # QuickOwnerChange
++	        #
++	        ##########
++	        elsif ( $ZoomMenuItems{$Item}->{Block} && $ZoomMenuItems{$Item}->{Block} eq 'DocumentMenuItemQuickOwnerChangeForm' ) {
++		        $LayoutObject->Block(
++		            Name => 'DocumentMenuItemQuickOwnerChangeForm',
++		            Data => $ZoomMenuItems{$Item},
++		        );
++	        }
++	        ##########
++	        #
++	        # End of custom change
++	        # QuickOwnerChange
++	        #
++	        ##########
+ 	        else {
+                 $LayoutObject->Block(
+                     Name => 'TicketMenu',
+Index: Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewMedium.tt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewMedium.tt	(date 1512640699000)
++++ Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewMedium.tt	(date 1512641156000)
+@@ -252,3 +252,25 @@
+     </form>
+ </li>
+ [% RenderBlockEnd("DocumentMenuItemMoveForm") %]
++##########
++#
++# Custom change
++# QuickOwnerChange
++#
++##########
++[% RenderBlockStart("DocumentMenuItemQuickOwnerChangeForm") %]
++<li class="[% Data.Class | html %]">
++    <form title="[% Translate("QuickOwnerChange ticket") | html %]" action="[% Env("CGIHandle") | html %]" method="post">
++        <input type="hidden" name="Action" value="AgentTicketQuickOwnerChange"/>
++        <input type="hidden" name="TicketID" value="[% Data.TicketID | html %]"/>
++        <label for="QuickOwnerChange" class="InvisibleText">[% Translate("QuickOwnerChange") | html %]:</label>
++        [% Data.NewOwnerStrg %]
++    </form>
++</li>
++[% RenderBlockEnd("DocumentMenuItemQuickOwnerChangeForm") %]
++##########
++#
++# End of custom change
++# QuickOwnerChange
++#
++##########
+Index: Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewPreview.tt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewPreview.tt	(date 1512640699000)
++++ Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewPreview.tt	(date 1512641156000)
+@@ -280,3 +280,25 @@
+     </form>
+ </li>
+ [% RenderBlockEnd("DocumentMenuItemMoveForm") %]
++##########
++#
++# Custom change
++# QuickOwnerChange
++#
++##########
++[% RenderBlockStart("DocumentMenuItemQuickOwnerChangeForm") %]
++<li class="[% Data.Class | html %]">
++    <form title="[% Translate("QuickOwnerChange ticket") | html %]" action="[% Env("CGIHandle") | html %]" method="post">
++        <input type="hidden" name="Action" value="AgentTicketQuickOwnerChange"/>
++        <input type="hidden" name="TicketID" value="[% Data.TicketID | html %]"/>
++        <label for="QuickOwnerChange" class="InvisibleText">[% Translate("QuickOwnerChange") | html %]:</label>
++        [% Data.NewOwnerStrg %]
++    </form>
++</li>
++[% RenderBlockEnd("DocumentMenuItemQuickOwnerChangeForm") %]
++##########
++#
++# End of custom change
++# QuickOwnerChange
++#
++##########
+Index: Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewSmall.tt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewSmall.tt	(date 1512640699000)
++++ Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketOverviewSmall.tt	(date 1512641155000)
+@@ -381,3 +381,25 @@
+ [% RenderBlockEnd("DocumentColumnFilterFormElement") %]
+ </form>
+ [% RenderBlockEnd("DocumentColumnFilterForm") %]
++##########
++#
++# Custom change
++# QuickOwnerChange
++#
++##########
++[% RenderBlockStart("DocumentMenuItemQuickOwnerChangeForm") %]
++<li class="[% Data.Class | html %]">
++    <form title="[% Translate("QuickOwnerChange ticket") | html %]" action="[% Env("CGIHandle") | html %]" method="post">
++        <input type="hidden" name="Action" value="AgentTicketQuickOwnerChange"/>
++        <input type="hidden" name="TicketID" value="[% Data.TicketID | html %]"/>
++        <label for="QuickOwnerChange" class="InvisibleText">[% Translate("QuickOwnerChange") | html %]:</label>
++        [% Data.NewOwnerStrg %]
++    </form>
++</li>
++[% RenderBlockEnd("DocumentMenuItemQuickOwnerChangeForm") %]
++##########
++#
++# End of custom change
++# QuickOwnerChange
++#
++##########
+Index: Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketZoom.tt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketZoom.tt	(date 1512640699000)
++++ Custom/Kernel/Output/HTML/Templates/Standard/AgentTicketZoom.tt	(date 1512641156000)
+@@ -191,6 +191,28 @@
+                                 <a href="[% Env("Baselink") %]Action=AgentTicketMove;TicketID=[% Data.TicketID | uri %];" class="AsPopup PopupType_TicketAction" title="[% Translate("Change Queue") | html %]">[% Translate("Queue") | html %]</a>
+                             </li>
+ [% RenderBlockEnd("MoveForm") %]
++##########
++#
++# Custom change
++# QuickOwnerChange
++#
++##########
++[% RenderBlockStart("DocumentMenuItemQuickOwnerChangeForm") %]
++<li class="[% Data.Class | html %]">
++    <form title="[% Translate("QuickOwnerChange ticket") | html %]" action="[% Env("CGIHandle") | html %]" method="post">
++        <input type="hidden" name="Action" value="AgentTicketQuickOwnerChange"/>
++        <input type="hidden" name="TicketID" value="[% Data.TicketID | html %]"/>
++        <label for="QuickOwnerChange" class="InvisibleText">[% Translate("QuickOwnerChange") | html %]:</label>
++        [% Data.NewOwnerStrg %]
++    </form>
++</li>
++[% RenderBlockEnd("DocumentMenuItemQuickOwnerChangeForm") %]
++##########
++#
++# End of custom change
++# QuickOwnerChange
++#
++##########
+ [% RenderBlockStart("TicketMenuExternalLink") %]
+                             <li>
+                                 <a href="[% Data.Link | Interpolate %]" class="[% Data.Class | html %]" [% Data.LinkParam %] title="[% Translate(Data.Description) | html %]" target="[% Data.Target %]">[% Translate(Data.Name) | html %]</a>
